@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: my-restful-service
+
+server:
+  port: 8088
+
+logging:
+  level:
+    org.springframework: debug

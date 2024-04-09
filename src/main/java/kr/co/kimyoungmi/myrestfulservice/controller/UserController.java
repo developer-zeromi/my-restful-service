@@ -1,5 +1,6 @@
 package kr.co.kimyoungmi.myrestfulservice.controller;
 
+import jakarta.validation.Valid;
 import kr.co.kimyoungmi.myrestfulservice.bean.User;
 import kr.co.kimyoungmi.myrestfulservice.dao.UserDaoService;
 import kr.co.kimyoungmi.myrestfulservice.exception.UserNotFoundException;
@@ -37,7 +38,7 @@ public class UserController {
     // input - details of user
     // output - CREATED & Return thr created URI
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User savedUser = service.save(user);
 
         // 현재 요청에 대한 URI 생성 => 조회 용도의 URI 반환

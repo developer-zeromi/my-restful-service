@@ -1,7 +1,10 @@
 package kr.co.kimyoungmi.myrestfulservice.exception;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,7 @@ import java.util.Date;
 @RestController
 @ControllerAdvice // AOP 적용: 관점을 기준으로 모듈화 => 모든 컨트롤러 빈이 Exception 발생시 실행
 public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+
 
     // Exception ex: 예외 객체, WebRequest request: 서비스 상태에서 발생할 수 있는 요청 정보
     @ExceptionHandler(Exception.class)
@@ -37,4 +41,17 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
         return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                  HttpHeaders headers,
+                                                                  HttpStatusCode status,
+                                                                  WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(),
+                "Validation failed",
+                ex.getBindingResult().toString()
+        );
+
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 }

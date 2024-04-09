@@ -1,15 +1,32 @@
-spring:
-  application:
-    name: my-restful-service
-  messages:
-    basename: messages
-
 server:
   port: 8088
 
 logging:
   level:
     org.springframework: debug
+
+spring:
+  application:
+    name: my-restful-service
+  messages:
+    basename: messages
+  datasource: # 데이터베이스를 사용하기 위한 데이터 소스 정보
+    url: jdbc:h2:mem:testdb
+    username: sa
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    defer-datasource-initialization: true # 초기 스크립트 존재시, 하이버네이트 초기화 이후 바로 작동하도록 설정
+  h2:
+    console:
+      enabled: true # 사용여부
+      settings:
+        web-allow-others: true # console 사용여부
+#  security:
+#    user:
+#      name: username
+#      password: passw0rd
 
 management:
   endpoints:

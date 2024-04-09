@@ -10,3 +10,11 @@ server:
 logging:
   level:
     org.springframework: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 보안 이슈로 실사용은 특정 매트릭스만 지정 필요
+
+

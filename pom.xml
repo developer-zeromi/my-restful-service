@@ -47,29 +47,43 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Validation: @Valid -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
             <version>3.0.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+        <!-- jackson dataformat을 통해 Response Accept JSON -> XML 응답 변환 -->
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.13.4</version>
         </dependency>
+        <!-- HATEOAS: hateoas를 적용한 상태 전이 (API 3단계) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
+        <!-- Swagger: protocol://host:port/swagger-ui/index.html -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.2.0</version>
         </dependency>
+        <!-- Actuator: protocol://host:port/actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!-- HAL Explorer: Response Format(XML, JSON 등)과는 상관 없이
+             API를 쉽게 사용할 수 있도록 Meta 정보를 HyperLink 형식으로 제공해주는 기능
+             HAL: protocol://host:port/explorer/index.html#uri=
+             => Actuator 정보를 UI로 확인 가능하며, 테스트도 가능
+             => REST 자원을 표시하기 위한 자료를 때마다 생성하지 않더라도 HATEOAS 기능을 바로 쓸 수 있음
+        -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-rest-hal-explorer</artifactId>
         </dependency>
 
     </dependencies>
